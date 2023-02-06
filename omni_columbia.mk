@@ -4,10 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from common AOSP config.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Inherit from our custom product configuration.
@@ -21,3 +19,11 @@ PRODUCT_NAME := omni_columbia
 PRODUCT_DEVICE := columbia
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Honor 10
+
+# Kernel
+PRODUCT_COPY_FILES += \
+    device/huawei/columbia/dummykernel:kernel
+
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    charger

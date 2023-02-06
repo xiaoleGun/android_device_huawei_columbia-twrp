@@ -1,25 +1,19 @@
-# System partitions
-/cache			    ext4	/dev/block/platform/hi_mci.0/by-name/cache			    flags=backup=1
-/cust			    ext4	/dev/block/platform/hi_mci.0/by-name/cust			    flags=backup=1
-/data			    f2fs	/dev/block/platform/hi_mci.0/by-name/userdata		    flags=backup=1;encryptable=footer
-/odm			    ext4	/dev/block/platform/hi_mci.0/by-name/odm			    flags=backup=1
-/product		    ext4	/dev/block/platform/hi_mci.0/by-name/product		    flags=backup=1
-/system             erofs	/dev/block/platform/hi_mci.0/by-name/system			    flags=backup=1
-/system             ext4	/dev/block/platform/hi_mci.0/by-name/system			    flags=backup=1
-/system_image       emmc	/dev/block/platform/hi_mci.0/by-name/system			    flags=backup=1;display="System Image";flashimg
-/vendor			    ext4	/dev/block/platform/hi_mci.0/by-name/vendor			    flags=backup=1
-/vendor			    erofs	/dev/block/platform/hi_mci.0/by-name/vendor			    flags=backup=1
-/vendor_image	    emmc	/dev/block/platform/hi_mci.0/by-name/vendor			    flags=backup=1;display="Vendor Image";flashimg
-/version		    ext4	/dev/block/platform/hi_mci.0/by-name/version		    flags=backup=1
-/kernel		    	emmc	/dev/block/platform/hi_mci.0/by-name/kernel		        flags=backup=1;flashimg
-/ramdisk		    emmc	/dev/block/platform/hi_mci.0/by-name/ramdisk		    flags=backup=1;flashimg
+/system_root       ext4      /dev/block/bootdevice/by-name/system            flags=display="System";backup=1
+/kernel            emmc      /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg=1
+/recovery_ramdisk  emmc      /dev/block/bootdevice/by-name/recovery_ramdisk  flags=display="Recovery Ramdisk";backup=1;flashimg=1
+/cache             ext4      /dev/block/bootdevice/by-name/cache             flags=display="Cache"
+/cust              ext4      /dev/block/bootdevice/by-name/cust              flags=display="Cust";backup=1,flashimg=1
+/misc              emmc      /dev/block/bootdevice/by-name/misc              flags=display="Misc";backup=0
+/oeminfo           emmc      /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1
+/data              f2fs      /dev/block/bootdevice/by-name/userdata
+/system_image      emmc      /dev/block/bootdevice/by-name/system            flags=display="System Image";backup=1
+/vendor            ext4      /dev/block/bootdevice/by-name/vendor
+/vendor_image      emmc      /dev/block/bootdevice/by-name/vendor            flags=display="Vendor Image";backup=1
+/odm               ext4      /dev/block/bootdevice/by-name/odm               flags=flashimg=1;backup=1;display="ODM";flashimg=1
+/splash2	       ext4		 /dev/block/bootdevice/by-name/splash2		     flags=flashimg=1;backup=1;display="Splash2"
+/hisee_fs	       ext4		 /dev/block/bootdevice/by-name/hisee_fs			 flags=backup=1;display="Hisee FS"
+/product	       ext4		 /dev/block/bootdevice/by-name/product			 flags=display="Product";backup=1;wipeingui
+/version	       ext4		 /dev/block/bootdevice/by-name/version			 flags=display="Version";backup=1;wipeingui
 
-# Recovery partitions
-/recovery_ramdisk	emmc	/dev/block/platform/hi_mci.0/by-name/recovery_ramdisk	flags=backup=1;flashimg
-
-# Protected partitions
-/oeminfo		    emmc    /dev/block/platform/hi_mci.0/by-name/oeminfo			flags=backup=1;flashimg
-/splash2		    ext4	/dev/block/platform/hi_mci.0/by-name/splash2			flags=backup=1
-
-# External storage
-/usb-otg		    auto	/dev/block/sda1 /dev/block/sda				            flags=display="USB-OTG";storage;wipeingui;removable
+#Removable Storage#
+/usbotg		       auto		 /dev/block/sde1         /dev/block/sde          flags=display="USB OTG";storage;removable;backup=0
